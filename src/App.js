@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Post from "./components/Post";
+import { db } from "./config/firebase";
 
 function App() {
-  const [posts, setPosts] = useState([
-    {
-      username: "Perfect Shades",
-      caption: "We are making instagram clone using react js",
-      imageUrl:
-        "https://www.freecodecamp.org/news/content/images/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png",
-    },
-    {
-      username: "Perfect Shades",
-      caption: "We are making instagram clone using react js",
-      imageUrl:
-        "https://www.freecodecamp.org/news/content/images/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) => {
+      setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })));
+    });
+  }, []);
 
   return (
     <div className="app">
