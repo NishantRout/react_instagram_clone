@@ -3,19 +3,13 @@ import React, { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 import firebase from "firebase";
 import "./css/Post.css";
-import {
-  BookmarkBorder,
-  ChatBubbleOutline,
-  Favorite,
-  FavoriteBorder,
-  Share,
-} from "@material-ui/icons";
+import Likes from "./Likes";
 
-function Post({ postId, user, username, caption, imageUrl }) {
+function Post({ postId, user, username, caption, imageUrl, liked, likeCount }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
-  const [liked, setLiked] = useState(false);
 
+  // for posts
   useEffect(() => {
     let unsubscribe;
     if (postId) {
@@ -57,28 +51,7 @@ function Post({ postId, user, username, caption, imageUrl }) {
 
       <img className="post__image" src={imageUrl} alt="Post Image" />
 
-      <div className="post__icons">
-        <div className="post__iconsLeft">
-          {liked ? (
-            <Favorite
-              className="post__iconsLike"
-              onClick={() => setLiked(false)}
-              style={{ color: "#ED4956" }}
-            />
-          ) : (
-            <FavoriteBorder
-              className="post__iconsLike"
-              onClick={() => setLiked(true)}
-            />
-          )}
-          <ChatBubbleOutline />
-          <Share />
-        </div>
-        <div className="post__iconsCenter"></div>
-        <div className="post__iconsRight">
-          <BookmarkBorder />
-        </div>
-      </div>
+      <Likes postId={postId} liked={liked} likeCount={likeCount} />
 
       <h4 className="post__text">
         <strong>{username} </strong>

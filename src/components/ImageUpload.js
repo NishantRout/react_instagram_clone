@@ -44,7 +44,10 @@ function ImageUpload({ username }) {
               caption: caption,
               imageUrl: url,
               username: username,
+              liked: false,
+              likeCount: 0,
             });
+
             setProgress(0);
             setCaption("");
             setImage(null);

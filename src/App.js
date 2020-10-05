@@ -183,6 +183,8 @@ function App() {
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
+              liked={post.liked}
+              likeCount={post.likeCount}
             />
           ))}
         </div>
