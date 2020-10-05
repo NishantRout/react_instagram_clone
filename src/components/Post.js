@@ -1,9 +1,10 @@
 import { Avatar } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { db } from "../config/firebase";
+import firebase from "firebase";
 import "./css/Post.css";
 
-function Post({ postId, username, caption, imageUrl }) {
+function Post({ postId, user, username, caption, imageUrl }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
 
@@ -14,6 +15,7 @@ function Post({ postId, username, caption, imageUrl }) {
         .collection("posts")
         .doc(postId)
         .collection("comments")
+        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });
@@ -26,6 +28,12 @@ function Post({ postId, username, caption, imageUrl }) {
 
   const postComment = (e) => {
     e.preventDefault();
+    db.collection("posts").doc(postId).collection("comments").add({
+      text: comment,
+      username: user.displayName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setComment("");
   };
 
   return (
@@ -36,7 +44,7 @@ function Post({ postId, username, caption, imageUrl }) {
           alt="User Avatar"
           src="/static/images/avatar/1.jpg"
         />
-        <h3>{username}</h3>
+        <h4>{username}</h4>
       </div>
 
       <img className="post__image" src={imageUrl} alt="Post Image" />
