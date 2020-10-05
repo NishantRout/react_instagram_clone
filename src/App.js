@@ -1,6 +1,7 @@
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import ImageUpload from "./components/ImageUpload";
 import Post from "./components/Post";
 import { auth, db } from "./config/firebase";
 
@@ -88,6 +89,10 @@ function App() {
 
   return (
     <div className="app">
+      <div className="app__upload">
+        <ImageUpload />
+      </div>
+
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
