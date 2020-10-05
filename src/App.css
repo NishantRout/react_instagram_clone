@@ -18,7 +18,7 @@
 
 .app__header {
   background-color: white;
-  padding: 20px;
+  padding: 10px;
   border-bottom: 1px solid lightgray;
   object-fit: contain;
   display: flex;
@@ -27,9 +27,16 @@
 
 .app__headerImage {
   object-fit: contain;
+  height: 32px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .app__signup {
   display: flex;
   flex-direction: column;
+}
+
+.app__loginConatiner {
+  padding: 5px;
 }

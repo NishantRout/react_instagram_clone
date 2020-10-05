@@ -160,7 +160,7 @@ function App() {
       <div className="app__header">
         <img
           className="app__headerImage"
-          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
           alt="instagram logo"
         />
         {user ? (
@@ -178,6 +178,7 @@ function App() {
           {posts.map(({ id, post }) => (
             <Post
               key={id}
+              postId={id}
               username={post.username}
               caption={post.caption}
               imageUrl={post.imageUrl}
