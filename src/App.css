@@ -16,6 +16,12 @@
   margin-left: 20px;
 }
 
+@media screen and (max-width: 990px) {
+  .app__postsRight {
+    display: none;
+  }
+}
+
 .app__header {
   position: sticky;
   top: 0;
@@ -42,4 +48,8 @@
 
 .app__loginConatiner {
   padding: 5px;
+}
+
+.app__uploadLogin {
+  padding-bottom: 25px;
 }

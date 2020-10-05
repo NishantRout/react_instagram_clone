@@ -14,7 +14,9 @@
 
 .post__text {
   font-weight: normal;
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
 }
 
 .post__header {
@@ -34,6 +36,7 @@
 
 .post__comments {
   padding-left: 15px;
+  padding-bottom: 10px;
 }
 
 .post__input {
@@ -50,4 +53,28 @@
   color: #0095f6;
   background-color: transparent;
   border-top: 1px solid lightgray;
+}
+
+.post__icons {
+  display: flex;
+  padding: 10px 15px;
+}
+
+.post__iconsLeft {
+  display: flex;
+  justify-content: space-between;
+  flex: 0.2;
+}
+
+.post__iconsCenter {
+  flex: 0.8;
+}
+
+.post__iconsRight {
+  flex: 0;
+}
+
+.post__iconsLike:hover {
+  transition: 100ms transform ease-in;
+  transform: scale(1.08);
 }
