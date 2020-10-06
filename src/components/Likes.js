@@ -8,29 +8,33 @@ import {
 } from "@material-ui/icons";
 import { db } from "../config/firebase";
 
-function Likes({ postId, liked, likeCount }) {
+function Likes({ postId, user, liked, likeCount }) {
   const handleLike = () => {
-    db.collection("posts")
-      .doc(postId)
-      .set(
-        {
-          liked: true,
-          likeCount: likeCount + 1,
-        },
-        { merge: true }
-      );
+    user
+      ? db
+          .collection("posts")
+          .doc(postId)
+          .set(
+            {
+              likeCount: likeCount + 1,
+            },
+            { merge: true }
+          )
+      : alert("Login to drop a like !!");
   };
   console.log("👉", likeCount);
   const handleDisLike = () => {
-    db.collection("posts")
-      .doc(postId)
-      .set(
-        {
-          liked: false,
-          likeCount: likeCount - 1,
-        },
-        { merge: true }
-      );
+    user
+      ? db
+          .collection("posts")
+          .doc(postId)
+          .set(
+            {
+              likeCount: likeCount - 1,
+            },
+            { merge: true }
+          )
+      : alert("Login to continue !!");
   };
 
   return (

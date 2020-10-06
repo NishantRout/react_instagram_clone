@@ -51,7 +51,7 @@ function Post({ postId, user, username, caption, imageUrl, liked, likeCount }) {
 
       <img className="post__image" src={imageUrl} alt="Post Image" />
 
-      <Likes postId={postId} liked={liked} likeCount={likeCount} />
+      <Likes postId={postId} user={user} liked={liked} likeCount={likeCount} />
 
       <h4 className="post__text">
         <strong>{username} </strong>
